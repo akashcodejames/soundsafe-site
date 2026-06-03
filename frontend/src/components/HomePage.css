@@ -45,7 +45,10 @@
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--signal) 35%, var(--line));
+  box-shadow:
+    12px 12px 0 color-mix(in srgb, var(--signal) 20%, transparent),
+    0 24px 48px rgba(0, 0, 0, 0.35);
 }
 
 .hero-frame img {
@@ -70,6 +73,10 @@
   margin-bottom: 1.75rem;
 }
 
+.home-section-head .section-heading {
+  margin-top: 0.4rem;
+}
+
 .pillar-list,
 .core-solutions-grid {
   display: grid;
@@ -80,7 +87,7 @@
 .core-solution {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 1rem;
   padding: 1.35rem 1.4rem;
   text-decoration: none;
   color: inherit;
@@ -96,6 +103,7 @@
   font-size: 1.15rem;
   font-weight: 700;
   margin: 0;
+  line-height: 1.2;
 }
 
 .core-solution__body {
@@ -121,8 +129,8 @@
 .what-card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.1rem 1.2rem;
+  gap: 1rem;
+  padding: 1.25rem 1.3rem;
   text-decoration: none;
   color: inherit;
 }
@@ -145,6 +153,9 @@
   font-family: var(--font-display);
   font-size: 1.05rem;
   margin: 0;
+  line-height: 1.2;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--signal) 35%, var(--line));
 }
 
 .what-card__body {
@@ -232,7 +243,8 @@
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
 }
 
 .manifest-item-desc {

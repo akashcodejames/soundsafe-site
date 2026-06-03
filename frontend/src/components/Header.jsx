@@ -175,15 +175,33 @@ export function Header() {
           </span>
         </Link>
 
-        <button
-          type="button"
-          className="masthead-toggle t-mono"
-          aria-expanded={open}
-          aria-controls="masthead-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
+        <div className="masthead-toolbar">
+          {!isMobile && (
+            <div className="masthead-actions masthead-actions--desktop">
+              {NAV_CTA && (
+                <NavLink
+                  to={NAV_CTA.path}
+                  className="nav-cta btn btn--fill"
+                  onClick={closeMenu}
+                >
+                  {NAV_CTA.label}
+                </NavLink>
+              )}
+              <ThemeToggle />
+            </div>
+          )}
+
+          {isMobile && !open && <ThemeToggle />}
+          <button
+            type="button"
+            className="masthead-toggle t-mono"
+            aria-expanded={open}
+            aria-controls="masthead-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
+        </div>
 
         <nav
           id="masthead-nav"
@@ -191,7 +209,7 @@ export function Header() {
           onMouseLeave={!isMobile ? () => setDesktopMega(null) : undefined}
         >
           <div className="nav-row">
-            <ul className="nav-cluster nav-cluster--main" aria-label="Main">
+            <ul className="nav-cluster nav-cluster--main" aria-label="Main menu">
               {NAV_MAIN.map((item) => (
                 <NavPlainItem key={item.path} item={item} onClose={closeMenu} />
               ))}
@@ -226,20 +244,22 @@ export function Header() {
               />
             </div>
           )}
-        </nav>
 
-        <div className="masthead-actions">
-          {NAV_CTA && (
-            <NavLink
-              to={NAV_CTA.path}
-              className="nav-cta btn btn--fill"
-              onClick={closeMenu}
-            >
-              {NAV_CTA.label}
-            </NavLink>
+          {isMobile && open && (
+            <div className="nav-mobile-footer">
+              {NAV_CTA && (
+                <NavLink
+                  to={NAV_CTA.path}
+                  className="nav-cta btn btn--fill"
+                  onClick={closeMenu}
+                >
+                  {NAV_CTA.label}
+                </NavLink>
+              )}
+              <ThemeToggle />
+            </div>
           )}
-          <ThemeToggle />
-        </div>
+        </nav>
       </div>
       <div className="masthead-rule" aria-hidden="true" />
     </header>

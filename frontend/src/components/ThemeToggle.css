@@ -1,5 +1,12 @@
 .theme-toggle {
   min-height: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.theme-toggle-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .theme-toggle-icon {

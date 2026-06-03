@@ -66,7 +66,7 @@ function ContentBlock({ section }) {
 
   if (section.layout === "split" && imageCol) {
     return (
-      <article className="content-block content-block--split surface-card">
+      <article className="content-block content-block--split content-block--feature surface-card">
         {imageCol}
         {textCol}
       </article>
@@ -75,7 +75,7 @@ function ContentBlock({ section }) {
 
   if (section.layout === "split-reverse" && imageCol) {
     return (
-      <article className="content-block content-block--split reverse surface-card">
+      <article className="content-block content-block--split content-block--feature reverse surface-card">
         {textCol}
         {imageCol}
       </article>
@@ -83,7 +83,7 @@ function ContentBlock({ section }) {
   }
 
   return (
-    <article className="content-block content-block--stack surface-card surface-card--signal">
+    <article className="content-block content-block--stack content-block--feature surface-card surface-card--signal">
       {imageCol}
       {textCol}
     </article>

@@ -76,9 +76,20 @@ article.surface-card:hover {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 0.95;
+  line-height: 1.08;
   margin: 0;
   color: var(--paper);
+}
+
+/* Space between label + heading in section headers */
+.home-section-head .section-heading,
+.page-aside .section-heading {
+  margin-top: 0.35rem;
+}
+
+.surface-card h2:not(.content-block__title),
+.surface-card h3 {
+  line-height: 1.15;
 }
 
 .section-heading em {
