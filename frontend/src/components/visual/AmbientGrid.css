@@ -1,0 +1,48 @@
+.ambient-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  overflow: hidden;
+}
+
+.ambient-grid__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ambient-grid__lines path {
+  opacity: 0.35;
+}
+
+.ambient-grid__nodes circle {
+  animation: node-pulse 4s ease-in-out infinite;
+}
+
+.ambient-grid__nodes circle:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.ambient-grid__nodes circle:nth-child(3) {
+  animation-delay: 2.4s;
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    r: 2;
+  }
+  50% {
+    opacity: 1;
+    r: 5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-grid__nodes circle {
+    animation: none;
+    opacity: 0.6;
+  }
+}

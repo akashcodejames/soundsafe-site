@@ -41,6 +41,34 @@
   max-width: 18ch;
 }
 
+.page-hero--fx .shell {
+  position: relative;
+}
+
+.page-hero--fx .shell::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 4.5rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--signal), transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--signal) 50%, transparent);
+}
+
+.page-hero--fx .section-heading {
+  background: linear-gradient(
+    120deg,
+    var(--paper),
+    color-mix(in srgb, var(--paper) 80%, var(--signal)) 50%,
+    var(--paper)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hero-shimmer 7s ease-in-out infinite;
+}
+
 .page-lead {
   max-width: 58ch;
   margin: 1rem 0 0;

@@ -3,7 +3,7 @@
  */
 export function PageHero({ label, title, lead, children }) {
   return (
-    <header className="page-hero">
+    <header className="page-hero page-hero--fx">
       <div className="shell">
         {label && <span className="section-label t-mono">{label}</span>}
         <h1 className="section-heading">{title}</h1>

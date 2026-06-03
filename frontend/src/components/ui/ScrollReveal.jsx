@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 
-export function ScrollReveal({ children, className = "", as: Tag = "div" }) {
+export function ScrollReveal({
+  children,
+  className = "",
+  as: Tag = "div",
+  stagger = false,
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -10,6 +15,11 @@ export function ScrollReveal({ children, className = "", as: Tag = "div" }) {
       ([entry]) => {
         if (entry.isIntersecting) {
           node.classList.add("in-view");
+          if (stagger) {
+            node.querySelectorAll(".stagger-item").forEach((el, i) => {
+              el.style.setProperty("--stagger-i", String(i));
+            });
+          }
           obs.disconnect();
         }
       },
@@ -17,10 +27,13 @@ export function ScrollReveal({ children, className = "", as: Tag = "div" }) {
     );
     obs.observe(node);
     return () => obs.disconnect();
-  }, []);
+  }, [stagger]);
 
   return (
-    <Tag ref={ref} className={`scroll-reveal ${className}`.trim()}>
+    <Tag
+      ref={ref}
+      className={`scroll-reveal ${stagger ? "scroll-reveal--stagger" : ""} ${className}`.trim()}
+    >
       {children}
     </Tag>
   );

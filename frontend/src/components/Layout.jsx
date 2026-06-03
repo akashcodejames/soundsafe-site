@@ -1,5 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useSite } from "../context/SiteContext.jsx";
+import { ScrollProgress } from "./effects/ScrollProgress.jsx";
+import { AmbientGrid } from "./visual/AmbientGrid.jsx";
 import { Footer } from "./Footer.jsx";
 import { Header } from "./Header.jsx";
 import { ScrollToTop } from "./ScrollToTop.jsx";
@@ -10,7 +12,9 @@ export function Layout() {
   const { pathname } = useLocation();
 
   return (
-    <div className="site site-canvas" data-path={pathname}>
+    <div className="site site-canvas site-canvas--fx" data-path={pathname}>
+      <ScrollProgress />
+      <AmbientGrid />
       <Header />
       <main className="site-main">
         {error && !loading && (
@@ -20,7 +24,9 @@ export function Layout() {
             <p>{error}</p>
           </div>
         )}
-        <Outlet />
+        <div key={pathname} className="page-enter">
+          <Outlet />
+        </div>
       </main>
       <Footer />
       <ScrollToTop />

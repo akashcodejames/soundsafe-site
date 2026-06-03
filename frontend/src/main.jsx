@@ -8,7 +8,7 @@ import "./index.css";
 import "./surfaces.css";
 import "./pageChrome.css";
 import "./components/ui/metrics.css";
-import "./effects.css";
+import "./visual-system.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

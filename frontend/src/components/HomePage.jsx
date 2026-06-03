@@ -5,6 +5,10 @@ import { MetricStrip } from "./ui/MetricStrip.jsx";
 import { ScrollReveal } from "./ui/ScrollReveal.jsx";
 import { Marquee } from "./Marquee.jsx";
 import { PartnerCarousel } from "./PartnerCarousel.jsx";
+import { AmbientGrid } from "./visual/AmbientGrid.jsx";
+import { SystemsOrbit } from "./visual/SystemsOrbit.jsx";
+import { BentoSolutions } from "./visual/BentoSolutions.jsx";
+import { OpsTimeline } from "./visual/OpsTimeline.jsx";
 import "./HomePage.css";
 import "./partnerLogos.css";
 
@@ -29,65 +33,66 @@ export function HomePage({ page }) {
 
   return (
     <div className="home">
-      <section className="hero">
+      <section className="hero hero--command">
         <div className="hero-inner shell">
           <div className="hero-copy reveal">
+            <div className="hero-status t-mono" aria-hidden="true">
+              <span className="hero-status__dot" />
+              Systems online · Greater Noida
+            </div>
             <span className="section-label t-mono">Sound Safe Technologies</span>
             <h1 className="t-display hero-title">
               <span className="hero-line">ELV, Security</span>
               <span className="hero-line hero-line--accent">& AV Solutions</span>
-              <span className="hero-line">Greater Noida</span>
+              <span className="hero-line hero-line--dim">Greater Noida</span>
             </h1>
             <p className="hero-lead t-body">
               {page.meta_description ||
                 "End-to-end technology solutions — from design to deployment and support."}
             </p>
             <div className="hero-actions">
-              <Link to="/solutions" className="btn btn--fill">
+              <Link to="/solutions" className="btn btn--fill btn--glow">
                 Our core solutions
               </Link>
-              <Link to="/contact" className="btn">
+              <Link to="/contact" className="btn btn--outline-fx">
                 Contact us
               </Link>
             </div>
           </div>
-          {heroImage?.url && (
-            <div className="hero-visual reveal reveal-d2">
-              <div className="hero-frame">
+
+          <div className="hero-stage reveal reveal-d2">
+            {heroImage?.url && (
+              <div className="hero-frame hero-frame--hud">
                 <img src={heroImage.url} alt="" />
-                <span className="hero-tag t-mono">Live systems</span>
+                <div className="hero-hud t-mono" aria-hidden="true">
+                  <span>SYS_OK</span>
+                  <span>AV · ELV · CCTV</span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+            <SystemsOrbit />
+          </div>
         </div>
         <MetricStrip items={HERO_METRICS} />
       </section>
 
       <Marquee items={TICKER} />
 
-      <ScrollReveal as="section" className="section-block--divider">
+      <ScrollReveal as="section" className="section-block--divider" stagger>
         <div className="shell">
           <header className="home-section-head">
             <span className="section-label t-mono">Our Core Solutions</span>
             <h2 className="section-heading">What we deliver</h2>
+            <p className="page-lead t-body home-section-lead">
+              Three integrated disciplines — one accountable partner for your
+              site.
+            </p>
           </header>
-          <div className="core-solutions-grid">
-            {coreSolutions.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`core-solution surface-card surface-card--${item.tone}`}
-              >
-                <h3 className="core-solution__title">{item.title}</h3>
-                <p className="core-solution__body t-body">{item.body}</p>
-                <span className="pillar-go t-mono">Explore →</span>
-              </Link>
-            ))}
-          </div>
+          <BentoSolutions items={coreSolutions} />
         </div>
       </ScrollReveal>
 
-      <ScrollReveal as="section" className="section-block--divider">
+      <ScrollReveal as="section" className="section-block--divider" stagger>
         <div className="shell">
           <header className="home-section-head">
             <span className="section-label t-mono">What We Do</span>
@@ -99,7 +104,7 @@ export function HomePage({ page }) {
               <Link
                 key={card.title}
                 to={card.path}
-                className="what-card surface-card surface-card--signal"
+                className="what-card card-fx surface-card surface-card--signal stagger-item"
               >
                 {card.image?.url && (
                   <figure className="what-card__media">
@@ -115,28 +120,8 @@ export function HomePage({ page }) {
       </ScrollReveal>
 
       <ScrollReveal as="section" className="section-block--divider">
-        <div className="shell manifest-layout">
-          <header className="manifest-intro">
-            <span className="section-label t-mono">Operating model</span>
-            <h2 className="section-heading manifest-title">
-              Design. Deploy. <em>Defend.</em>
-            </h2>
-            <Link to="/services" className="btn btn--fill manifest-cta">
-              Our services
-            </Link>
-          </header>
-          <div className="manifest-grid">
-            {[
-              ["Consult", "Needs assessment & solution architecture"],
-              ["Integrate", "Installation, tuning, handover"],
-              ["Maintain", "AMC & lifecycle support"],
-            ].map(([t, d]) => (
-              <div key={t} className="manifest-item surface-card surface-card--signal">
-                <h3 className="manifest-item-title">{t}</h3>
-                <p className="manifest-item-desc">{d}</p>
-              </div>
-            ))}
-          </div>
+        <div className="shell">
+          <OpsTimeline />
         </div>
       </ScrollReveal>
 
