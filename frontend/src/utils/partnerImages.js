@@ -1,3 +1,5 @@
+import { assetUrl } from "./assets.js";
+
 /** Scraped paths that are not vendor/partner logos (hero art, diagrams, product shots). */
 const NON_PARTNER_PATTERNS = [
   /chatgpt-image-may-8/i,
@@ -26,5 +28,11 @@ export function isPartnerLogoImage(img) {
 }
 
 export function selectPartnerLogos(images, limit = 24) {
-  return (images || []).filter(isPartnerLogoImage).slice(0, limit);
+  return (images || [])
+    .filter(isPartnerLogoImage)
+    .slice(0, limit)
+    .map((img) => ({
+      ...img,
+      url: assetUrl(img.local_path) || img.src,
+    }));
 }

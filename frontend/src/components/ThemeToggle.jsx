@@ -8,15 +8,20 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle t-mono"
+      className={`theme-toggle btn btn--ghost t-mono ${!isLight ? "is-active" : ""}`}
       onClick={toggleTheme}
-      aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      title={isLight ? "Dark mode" : "Light mode"}
+      aria-label={
+        isLight
+          ? "Light theme active. Switch to dark mode"
+          : "Dark theme active. Switch to light mode"
+      }
+      title={isLight ? "Switch to dark mode" : "Switch to light mode"}
+      data-active-theme={theme}
     >
       <span className="theme-toggle-icon" aria-hidden="true">
-        {isLight ? "◐" : "◑"}
+        {isLight ? "☀" : "◐"}
       </span>
-      <span className="theme-toggle-label">{isLight ? "Dark" : "Light"}</span>
+      <span className="theme-toggle-label">{isLight ? "Light" : "Dark"}</span>
     </button>
   );
 }

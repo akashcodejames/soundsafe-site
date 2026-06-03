@@ -91,9 +91,19 @@ img {
   display: block;
 }
 
+/* Single content column — header, sections, footer align to this */
 .shell {
   width: min(100% - var(--gutter) * 2, var(--max));
   margin-inline: auto;
+}
+
+/* Dividers align with content column — not full viewport */
+.shell-rule {
+  border-top: 1px solid var(--line);
+}
+
+.shell-rule-bottom {
+  border-bottom: 1px solid var(--line);
 }
 
 /* Typography utilities */
@@ -118,7 +128,6 @@ img {
 
 /* Buttons */
 .btn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -127,60 +136,51 @@ img {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.95rem 1.5rem;
+  padding: 0.9rem 1.45rem;
   border: 2px solid var(--paper);
   background: transparent;
   color: var(--paper);
   cursor: pointer;
-  overflow: hidden;
-  isolation: isolate;
   transition:
-    transform 0.3s var(--ease-spring),
-    box-shadow 0.3s var(--ease-out),
-    background 0.25s var(--ease-out),
-    color 0.25s var(--ease-out),
-    border-color 0.25s var(--ease-out);
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.22) 50%,
-    transparent 60%
-  );
-  transform: translateX(-120%);
-  transition: transform 0.55s var(--ease-out);
-  pointer-events: none;
+    transform 0.2s var(--ease-out),
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
 }
 
 .btn:hover {
-  transform: translateY(-2px);
   background: var(--signal);
   border-color: var(--signal);
   color: var(--ink);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--signal) 40%, transparent),
-    0 12px 32px color-mix(in srgb, var(--signal) 25%, transparent);
-}
-
-.btn:hover::after {
-  transform: translateX(120%);
+  transform: translateY(-1px);
 }
 
 .btn--fill {
-  background: linear-gradient(135deg, var(--signal-hot), var(--signal));
+  background: var(--signal);
   border-color: var(--signal);
   color: var(--ink);
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--signal) 30%, transparent);
 }
 
 .btn--fill:hover {
-  background: linear-gradient(135deg, var(--signal-hot), var(--signal-hot));
+  background: var(--signal-hot);
   border-color: var(--signal-hot);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.68rem;
+  border-width: 1px;
+  border-color: var(--line);
+  color: var(--paper-dim);
+}
+
+.btn--ghost:hover,
+.btn--ghost.is-active {
+  border-color: var(--signal);
+  color: var(--signal-hot);
+  background: color-mix(in srgb, var(--signal) 8%, transparent);
 }
 
 .btn:disabled {
@@ -188,14 +188,10 @@ img {
   cursor: not-allowed;
 }
 
-/* Section rhythm */
+/* Optional subtle band — same surfaces as page */
 .section-paper {
-  background: var(--paper);
-  color: var(--ink);
-}
-
-.section-paper .t-mono {
-  color: var(--wire);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 /* States */
@@ -221,11 +217,11 @@ img {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(36px) scale(0.98);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 

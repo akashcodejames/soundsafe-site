@@ -1,53 +1,29 @@
 .marquee {
   overflow: hidden;
-  border-block: 1px solid var(--line-dark);
-  background: var(--paper);
-  color: var(--ink);
-  padding: 1rem 0;
-  position: relative;
-}
-
-.marquee::before,
-.marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(3rem, 12vw, 8rem);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.marquee::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--paper), transparent);
-}
-
-.marquee::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--paper), transparent);
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.9rem 0;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: scroll 22s linear infinite;
+  animation: scroll 32s linear infinite;
 }
 
 .marquee-item {
   flex-shrink: 0;
-  padding: 0 2.5rem;
+  padding: 0 2rem;
   white-space: nowrap;
-  color: var(--ink);
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  color: var(--paper-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
 }
 
 .marquee-dot {
-  margin-left: 2rem;
+  margin-left: 1.75rem;
   color: var(--signal);
-  opacity: 0.85;
-  text-shadow: 0 0 12px var(--glow-signal);
+  opacity: 0.7;
 }
 
 @keyframes scroll {
@@ -61,6 +37,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation-duration: 60s;
+    animation-duration: 55s;
   }
 }

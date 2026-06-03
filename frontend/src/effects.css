@@ -1,27 +1,38 @@
-/* Ambient atmosphere — mesh, grid, glow (theme-aware) */
+/* Quiet depth — no glows, no competing styles */
 
 [data-theme="dark"] {
-  --mesh-a: rgba(201, 162, 39, 0.14);
-  --mesh-b: rgba(90, 143, 160, 0.12);
-  --mesh-c: rgba(194, 74, 62, 0.06);
-  --grid-line: rgba(240, 233, 220, 0.04);
-  --glow-signal: rgba(201, 162, 39, 0.45);
-  --glow-wire: rgba(90, 143, 160, 0.35);
+  --mesh-a: rgba(201, 162, 39, 0.04);
+  --mesh-b: rgba(90, 143, 160, 0.03);
 }
 
 [data-theme="light"] {
-  --mesh-a: rgba(154, 123, 24, 0.12);
-  --mesh-b: rgba(61, 101, 112, 0.1);
-  --mesh-c: rgba(158, 51, 41, 0.05);
-  --grid-line: rgba(20, 20, 18, 0.06);
-  --glow-signal: rgba(154, 123, 24, 0.35);
-  --glow-wire: rgba(61, 101, 112, 0.28);
+  --mesh-a: rgba(154, 123, 24, 0.03);
+  --mesh-b: rgba(61, 101, 112, 0.025);
 }
 
-.site-canvas {
-  position: relative;
-  min-height: 100vh;
-  isolation: isolate;
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s var(--ease-out),
+    transform 0.65s var(--ease-out);
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.content-reveal-wrap {
+  display: block;
 }
 
 .site-canvas::before {
@@ -29,56 +40,9 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse 80% 50% at 15% -10%, var(--mesh-a), transparent 55%),
-    radial-gradient(ellipse 60% 45% at 95% 20%, var(--mesh-b), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 50% 100%, var(--mesh-c), transparent 45%),
-    var(--ink);
-}
-
-.site-canvas::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
   z-index: -1;
-  opacity: 0.55;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 75%);
-}
-
-@keyframes mesh-drift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(2%, -1%) scale(1.02);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.55;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.text-glow {
-  text-shadow:
-    0 0 40px var(--glow-signal),
-    0 0 80px color-mix(in srgb, var(--glow-signal) 40%, transparent);
-}
-
-.glass-panel {
-  background: color-mix(in srgb, var(--ink-soft) 72%, transparent);
-  border: 1px solid var(--line);
-  backdrop-filter: blur(16px) saturate(1.2);
+  background:
+    radial-gradient(ellipse 60% 40% at 0% 0%, var(--mesh-a), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 100% 20%, var(--mesh-b), transparent 45%),
+    var(--ink);
 }

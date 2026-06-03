@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchSiteMeta } from "../api/client.js";
+import { fetchSiteMeta } from "../data/siteLoader.js";
 
 const SiteContext = createContext({
   meta: null,

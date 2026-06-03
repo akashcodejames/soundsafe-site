@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { fetchPage } from "../api/client.js";
+import { fetchPage } from "../data/siteLoader.js";
 import { HomePage } from "../components/HomePage.jsx";
 import { PageBreadcrumb, PageView } from "../components/PageView.jsx";
 import { TechnologyPartnerPage } from "../components/TechnologyPartnerPage.jsx";
@@ -48,12 +48,16 @@ export function ContentPage({ slug }) {
 
   if (slug === "home") return <HomePage page={page} />;
 
+  const showCrumb = slug !== "home";
+
   if (slug === "team") {
     return (
       <>
-        <div className="shell">
-          <PageBreadcrumb slug={slug} />
-        </div>
+        {showCrumb && (
+          <div className="shell page-crumb-wrap">
+            <PageBreadcrumb slug={slug} />
+          </div>
+        )}
         <TechnologyPartnerPage page={page} partnerImages={homeImages} />
       </>
     );
@@ -61,8 +65,8 @@ export function ContentPage({ slug }) {
 
   return (
     <>
-      {pathname !== "/" && (
-        <div className="shell">
+      {showCrumb && (
+        <div className="shell page-crumb-wrap">
           <PageBreadcrumb slug={slug} />
         </div>
       )}

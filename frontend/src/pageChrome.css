@@ -1,0 +1,126 @@
+/**
+ * Interior pages — shared hero, breadcrumb, sections, CTA (matches homepage).
+ */
+
+.page-crumb-wrap {
+  padding: 1rem 0 0;
+}
+
+.crumb {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.crumb a {
+  color: var(--paper-dim);
+  transition: color 0.2s;
+}
+
+.crumb a:hover {
+  color: var(--signal);
+}
+
+.crumb-sep {
+  margin: 0 0.45rem;
+  opacity: 0.45;
+}
+
+.page-hero {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+}
+
+.page-hero .shell {
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero .section-heading {
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  max-width: 18ch;
+}
+
+.page-lead {
+  max-width: 58ch;
+  margin: 1rem 0 0;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--paper-dim);
+}
+
+.page-intro {
+  padding: 1.5rem 0 0;
+}
+
+.page-intro .page-lead {
+  margin: 0;
+}
+
+.page-section--compact > .shell {
+  padding-top: 1.25rem;
+  padding-bottom: 0;
+}
+
+.page-cta-wrap > .shell {
+  padding-bottom: var(--space-section);
+}
+
+.page-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.page-aside {
+  padding: 1.5rem 0;
+}
+
+.page-aside .section-label {
+  margin-bottom: 0.75rem;
+}
+
+.page-aside ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+}
+
+.page-aside a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+  transition: color 0.2s;
+}
+
+.page-aside a:hover {
+  color: var(--signal);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-list li {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--paper-dim);
+  background: var(--surface-raised);
+}

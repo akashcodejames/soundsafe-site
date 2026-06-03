@@ -5,6 +5,9 @@ import App from "./App.jsx";
 import { SiteProvider } from "./context/SiteContext.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./index.css";
+import "./surfaces.css";
+import "./pageChrome.css";
+import "./components/ui/metrics.css";
 import "./effects.css";
 
 createRoot(document.getElementById("root")).render(

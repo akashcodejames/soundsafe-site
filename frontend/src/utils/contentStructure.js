@@ -1,7 +1,82 @@
-import { assetUrl } from "../api/client.js";
+import { assetUrl } from "./assets.js";
 
 /** Known page → heading/paragraph/image order (matches original Elementor layout) */
 const PAGE_LAYOUTS = {
+  about: [
+    { heading: "About Us", p: 0, layout: "intro" },
+    { heading: "Our Expertise", p: 1, layout: "stack" },
+    { heading: "Audio Visual Integration", p: 2, img: 0, layout: "split" },
+    { heading: "IT and Network Infrastructure", p: 3, img: 1, layout: "split-reverse" },
+    {
+      heading: "Your Trusted Partner for Integrated Technology Solutions",
+      p: 4,
+      layout: "stack",
+    },
+    { heading: "Our Mission", p: 5, layout: "stack" },
+    {
+      heading: "Why Organizations Trust Sound Safe Technologies",
+      p: 6,
+      layout: "stack",
+    },
+  ],
+  "professinal-av-solution-2": [
+    {
+      heading: "PROFESSINAL AV SOLUTION",
+      introLine:
+        '"Transforming Indian Workspaces for the Future via Expert AV Systems."',
+      layout: "intro",
+    },
+    { heading: "What is Audio Visual Integration ?", p: 0, layout: "stack" },
+    { heading: "Key Components of an Integrated AV System", p: 1, layout: "stack" },
+    { heading: "The AV Integration Process", p: 2, layout: "stack" },
+  ],
+  services: [
+    { heading: "Our solutionsYour Advantage", p: 0, layout: "intro" },
+    { heading: "Professinal Audio-Visual Integration", p: 2, img: 0, layout: "split" },
+    { heading: "CCTV Survilence & Security", p: 3, img: 1, layout: "split-reverse" },
+    { heading: "Physical Security", p: 4, img: 2, layout: "split" },
+    { heading: "Our Methodology", p: 5, img: 3, layout: "split-reverse" },
+    { heading: "Innovative expertise", p: 7, layout: "stack" },
+    { heading: "Client-centric approach", p: 6, layout: "stack" },
+    { heading: "Customized solutions", p: 8, layout: "stack" },
+  ],
+  "it-network-infrastructure": [
+    { heading: "IT and Network Infrastructure", p: 0, layout: "intro" },
+    { heading: "The Core AV-over-IP Components", p: 1, img: 0, layout: "split" },
+    { heading: "Crucial Network Requirements for AV", p: 2, layout: "stack" },
+    { heading: "Why the Shift to Networked AV?", p: 3, layout: "stack" },
+  ],
+  "auditorium-av": [
+    { heading: "AUDITORIUM", p: 0, img: 0, layout: "intro" },
+    { heading: "Our Goal", p: 1, layout: "stack", title: "Our Goal" },
+    { heading: "Reference project", p: 2, layout: "stack", title: "Reference project" },
+  ],
+  "huddle-room": [
+    { heading: "What are meeting Huddle Room", p: 0, img: 0, layout: "split" },
+    { heading: "The AV Design Philosophy", p: 2, layout: "stack" },
+  ],
+  "confrence-board-rooms": [
+    { heading: "what are confrenceand Board Room ?", p: 0, layout: "intro" },
+    { heading: "Confrence Room", p: 1, img: 1, layout: "split" },
+    { heading: "Boardroom", p: 2, img: 2, layout: "split-reverse" },
+  ],
+  museum: [
+    {
+      heading: "Audio visual in Educatinal Institute",
+      introLine:
+        "Smart classrooms, lecture halls, and campus-wide AV for education.",
+      layout: "intro",
+    },
+    { heading: "Smart Classroom & Lecture Hall", p: 1, img: 0, layout: "split" },
+    { heading: "Campus-Wide System", p: 2, layout: "stack" },
+    { heading: "The Integrator's Scope of Work", p: 3, img: 1, layout: "split-reverse" },
+  ],
+  installation: [
+    { heading: "Installation And Handover", p: 0, img: 0, layout: "split" },
+  ],
+  amc: [
+    { heading: "ANNUAL MAINTAINANCE", p: 0, img: 0, layout: "split" },
+  ],
   "security-surveillance": [
     { heading: "Security and Survillence", p: 0, img: null, layout: "intro" },
     {
@@ -114,7 +189,7 @@ function buildFromLayout(page, layout) {
 
     return {
       id: slugify(row.heading),
-      title: row.heading,
+      title: row.title || row.heading,
       level: heading?.level ?? 2,
       layout: row.layout || (index % 2 === 0 ? "split" : "split-reverse"),
       body,
@@ -123,10 +198,16 @@ function buildFromLayout(page, layout) {
     };
   });
 
+  const introRow = layout.find((r) => r.layout === "intro");
   const introSection = sections.find((s) => s.layout === "intro");
+  const intro =
+    introRow?.introLine ||
+    introSection?.parsed?.intro ||
+    introSection?.body ||
+    null;
   return {
     pageTitle,
-    intro: introSection?.parsed?.intro || introSection?.body || null,
+    intro,
     sections: sections.filter((s) => s.layout !== "intro"),
   };
 }

@@ -1,0 +1,95 @@
+/**
+ * Shared surfaces — one card language sitewide (dark + light).
+ */
+
+:root {
+  --radius: 4px;
+  --space-section: clamp(3.5rem, 7vw, 5rem);
+  --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+[data-theme="dark"] {
+  --surface: #111110;
+  --surface-raised: #171715;
+  --surface-hover: #1e1e1b;
+}
+
+[data-theme="light"] {
+  --surface: #ece8e0;
+  --surface-raised: #f8f5ef;
+  --surface-hover: #fffdf8;
+}
+
+.surface-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.2s var(--ease-out),
+    background 0.2s var(--ease-out),
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out);
+}
+
+a.surface-card:hover,
+button.surface-card:hover,
+.surface-card:has(a):hover,
+.surface-card:has(button):hover {
+  background: var(--surface-hover);
+  border-color: color-mix(in srgb, var(--signal) 35%, var(--line));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+article.surface-card:hover,
+form.surface-card:hover,
+figure.surface-card:hover {
+  background: var(--surface-raised);
+  transform: none;
+  box-shadow: none;
+}
+
+article.surface-card:hover {
+  border-color: color-mix(in srgb, var(--signal) 25%, var(--line));
+}
+
+.surface-card--signal {
+  border-left: 3px solid var(--signal);
+}
+
+.surface-card--wire {
+  border-left: 3px solid var(--wire);
+}
+
+.surface-card--alert {
+  border-left: 3px solid var(--alert);
+}
+
+.section-label {
+  color: var(--wire);
+  display: block;
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0;
+  color: var(--paper);
+}
+
+.section-heading em {
+  font-style: normal;
+  color: var(--signal);
+}
+
+.section-block--divider {
+  border-top: 1px solid var(--line);
+}
+
+.section-block--divider > .shell {
+  padding-block: var(--space-section);
+}

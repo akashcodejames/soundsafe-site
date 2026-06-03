@@ -4,8 +4,12 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "build:data": "python3 ../scripts/build_site_data.py",
+    "predev": "npm run build:data",
     "dev": "vite",
+    "prebuild": "npm run build:data",
     "build": "vite build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "preview": "vite preview"
   },
   "dependencies": {

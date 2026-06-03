@@ -11,8 +11,8 @@ export function Footer() {
     <footer className="site-foot">
       <div className="foot-cta shell">
         <div className="foot-cta-text">
-          <span className="t-mono">Ready to deploy</span>
-          <h2 className="t-display foot-cta-title">
+          <span className="section-label t-mono">Ready to deploy</span>
+          <h2 className="section-heading foot-cta-title">
             Build infrastructure
             <br />
             that performs.
@@ -30,22 +30,22 @@ export function Footer() {
 
       <div className="foot-grid shell">
         <div className="foot-brand">
-          <span className="t-mono">Sound Safe Technologies</span>
+          <span className="section-label t-mono">Sound Safe Technologies</span>
           <p>{c.tagline}</p>
         </div>
         <div>
-          <span className="t-mono foot-label">Direct line</span>
+          <span className="section-label t-mono">Direct line</span>
           <a href={`tel:${c.phone}`} className="foot-big">
             {c.phone}
           </a>
           <a href={`mailto:${c.email}`}>{c.email}</a>
         </div>
         <div>
-          <span className="t-mono foot-label">Base</span>
+          <span className="section-label t-mono">Base</span>
           <p className="foot-address">{c.address}</p>
         </div>
         <div>
-          <span className="t-mono foot-label">Navigate</span>
+          <span className="section-label t-mono">Navigate</span>
           <Link to="/solutions">Solutions</Link>
           <Link to="/services">Services</Link>
           <Link to="/partners">Partners</Link>

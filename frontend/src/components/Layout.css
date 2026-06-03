@@ -6,6 +6,10 @@
   overflow-x: clip;
 }
 
+.site-canvas {
+  min-height: 100vh;
+}
+
 .site-main {
   flex: 1;
   position: relative;

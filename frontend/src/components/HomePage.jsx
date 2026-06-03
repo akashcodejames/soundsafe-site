@@ -1,33 +1,12 @@
 import { Link } from "react-router-dom";
-import { assetUrl } from "../api/client.js";
 import { selectPartnerLogos } from "../utils/partnerImages.js";
+import { buildHomeContent } from "../utils/homeContent.js";
+import { MetricStrip } from "./ui/MetricStrip.jsx";
+import { ScrollReveal } from "./ui/ScrollReveal.jsx";
 import { Marquee } from "./Marquee.jsx";
+import { PartnerCarousel } from "./PartnerCarousel.jsx";
 import "./HomePage.css";
 import "./partnerLogos.css";
-
-const PILLARS = [
-  {
-    num: "01",
-    title: "Professional AV",
-    desc: "Boardrooms, auditoriums, campuses, command centers — integrated end to end.",
-    path: "/solutions/professional-av",
-    tone: "signal",
-  },
-  {
-    num: "02",
-    title: "IT & Network",
-    desc: "Fiber, switching, Wi-Fi, servers — backbone built for AV-over-IP scale.",
-    path: "/solutions/it-network",
-    tone: "wire",
-  },
-  {
-    num: "03",
-    title: "Security",
-    desc: "CCTV, access, fire, BMS — physical safety engineered as one system.",
-    path: "/solutions/security-surveillance",
-    tone: "alert",
-  },
-];
 
 const TICKER = [
   "AV Integration",
@@ -38,133 +17,136 @@ const TICKER = [
   "Design · Deploy · Support",
 ];
 
+const HERO_METRICS = [
+  { value: "3", label: "Core disciplines" },
+  { value: "∞", label: "Uptime mindset", tone: "wire" },
+  { value: "1", label: "Accountable partner" },
+];
+
 export function HomePage({ page }) {
-  const heroImg = page.images[0]
-    ? assetUrl(page.images[0].local_path) || page.images[0].src
-    : null;
+  const { heroImage, coreSolutions, whatWeDo } = buildHomeContent(page);
   const partners = selectPartnerLogos(page.images);
 
   return (
     <div className="home">
       <section className="hero">
-        <div className="hero-orb hero-orb--signal" aria-hidden="true" />
-        <div className="hero-orb hero-orb--wire" aria-hidden="true" />
         <div className="hero-inner shell">
           <div className="hero-copy reveal">
-            <p className="t-mono hero-eyebrow">Sound Safe Technologies</p>
+            <span className="section-label t-mono">Sound Safe Technologies</span>
             <h1 className="t-display hero-title">
-              <span className="hero-line">Infrastructure</span>
-              <span className="hero-line hero-line--accent text-glow">
-                you can
-              </span>
-              <span className="hero-line">trust.</span>
+              <span className="hero-line">ELV, Security</span>
+              <span className="hero-line hero-line--accent">& AV Solutions</span>
+              <span className="hero-line">Greater Noida</span>
             </h1>
             <p className="hero-lead t-body">
-              ELV, security, and professional AV for organizations that cannot
-              afford downtime — from consultancy through commissioning.
+              {page.meta_description ||
+                "End-to-end technology solutions — from design to deployment and support."}
             </p>
             <div className="hero-actions">
               <Link to="/solutions" className="btn btn--fill">
-                Explore solutions
+                Our core solutions
               </Link>
-              <Link to="/about" className="btn">
-                About us
+              <Link to="/contact" className="btn">
+                Contact us
               </Link>
             </div>
           </div>
-          {heroImg && (
+          {heroImage?.url && (
             <div className="hero-visual reveal reveal-d2">
               <div className="hero-frame">
-                <img src={heroImg} alt="" />
+                <img src={heroImage.url} alt="" />
                 <span className="hero-tag t-mono">Live systems</span>
               </div>
             </div>
           )}
         </div>
-        <div className="hero-stats shell reveal reveal-d3">
-          <div className="stat-card glass-panel">
-            <span className="stat-num t-display">3</span>
-            <span className="t-mono">Core disciplines</span>
-          </div>
-          <div className="stat-card glass-panel">
-            <span className="stat-num t-display stat-num--wire">∞</span>
-            <span className="t-mono">Uptime mindset</span>
-          </div>
-          <div className="stat-card glass-panel">
-            <span className="stat-num t-display">1</span>
-            <span className="t-mono">Accountable partner</span>
-          </div>
-        </div>
+        <MetricStrip items={HERO_METRICS} />
       </section>
 
       <Marquee items={TICKER} />
 
-      <section className="pillars section-paper">
+      <ScrollReveal as="section" className="section-block--divider">
         <div className="shell">
-          <header className="section-head">
-            <span className="t-mono">Capability map</span>
-            <h2 className="t-display section-title">What we engineer</h2>
+          <header className="home-section-head">
+            <span className="section-label t-mono">Our Core Solutions</span>
+            <h2 className="section-heading">What we deliver</h2>
           </header>
-          <div className="pillar-list">
-            {PILLARS.map((p) => (
+          <div className="core-solutions-grid">
+            {coreSolutions.map((item) => (
               <Link
-                key={p.path}
-                to={p.path}
-                className={`pillar pillar--${p.tone}`}
+                key={item.path}
+                to={item.path}
+                className={`core-solution surface-card surface-card--${item.tone}`}
               >
-                <span className="pillar-num t-mono">{p.num}</span>
-                <h3 className="t-display pillar-title">{p.title}</h3>
-                <p className="pillar-desc">{p.desc}</p>
-                <span className="pillar-go t-mono">Enter →</span>
+                <h3 className="core-solution__title">{item.title}</h3>
+                <p className="core-solution__body t-body">{item.body}</p>
+                <span className="pillar-go t-mono">Explore →</span>
               </Link>
             ))}
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="manifest shell">
-        <div className="manifest-block">
-          <span className="t-mono">Operating model</span>
-          <h2 className="t-display manifest-title">
-            Design. Deploy.
-            <br />
-            <em>Defend.</em>
-          </h2>
+      <ScrollReveal as="section" className="section-block--divider">
+        <div className="shell">
+          <header className="home-section-head">
+            <span className="section-label t-mono">What We Do</span>
+            <h2 className="section-heading">Integrated technology</h2>
+            <p className="page-lead t-body home-what-lead">{whatWeDo.intro}</p>
+          </header>
+          <div className="what-we-do-grid">
+            {whatWeDo.cards.map((card) => (
+              <Link
+                key={card.title}
+                to={card.path}
+                className="what-card surface-card surface-card--signal"
+              >
+                {card.image?.url && (
+                  <figure className="what-card__media">
+                    <img src={card.image.url} alt="" loading="lazy" />
+                  </figure>
+                )}
+                <h3 className="what-card__title">{card.title}</h3>
+                <p className="what-card__body">{card.body}</p>
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="manifest-grid">
-          {[
-            ["Consult", "Needs assessment & solution architecture"],
-            ["Integrate", "Installation, tuning, handover"],
-            ["Maintain", "AMC & lifecycle support"],
-          ].map(([t, d]) => (
-            <div key={t} className="manifest-item">
-              <h3 className="t-display">{t}</h3>
-              <p>{d}</p>
-            </div>
-          ))}
+      </ScrollReveal>
+
+      <ScrollReveal as="section" className="section-block--divider">
+        <div className="shell manifest-layout">
+          <header className="manifest-intro">
+            <span className="section-label t-mono">Operating model</span>
+            <h2 className="section-heading manifest-title">
+              Design. Deploy. <em>Defend.</em>
+            </h2>
+            <Link to="/services" className="btn btn--fill manifest-cta">
+              Our services
+            </Link>
+          </header>
+          <div className="manifest-grid">
+            {[
+              ["Consult", "Needs assessment & solution architecture"],
+              ["Integrate", "Installation, tuning, handover"],
+              ["Maintain", "AMC & lifecycle support"],
+            ].map(([t, d]) => (
+              <div key={t} className="manifest-item surface-card surface-card--signal">
+                <h3 className="manifest-item-title">{t}</h3>
+                <p className="manifest-item-desc">{d}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <Link to="/services" className="btn btn--fill manifest-cta">
-          Our services
-        </Link>
-      </section>
+      </ScrollReveal>
 
       {partners.length > 0 && (
-        <section className="partners">
+        <ScrollReveal as="section" className="section-block--divider">
           <div className="shell">
-            <span className="t-mono partners-label">Technology alliances</span>
+            <span className="section-label t-mono">Our Valuable Partners</span>
+            <PartnerCarousel logos={partners} />
           </div>
-          <div className="partner-wall">
-            {partners.map((img) => {
-              const src = assetUrl(img.local_path);
-              if (!src) return null;
-              return (
-                <figure key={src} className="partner-cell">
-                  <img src={src} alt="Partner logo" loading="lazy" />
-                </figure>
-              );
-            })}
-          </div>
-        </section>
+        </ScrollReveal>
       )}
     </div>
   );
