@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/Layout.jsx";
 import { ContactPage } from "./pages/ContactPage.jsx";
 import { ContentPage } from "./pages/ContentPage.jsx";
@@ -11,7 +11,7 @@ function DynamicPage() {
   if (!slug) {
     return (
       <div className="page-error shell">
-        Page not found. <a href="/">Go home</a>
+        Page not found. <Link to="/">Go home</Link>
       </div>
     );
   }

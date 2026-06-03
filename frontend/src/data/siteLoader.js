@@ -4,7 +4,7 @@ let cache = null;
 
 export async function loadSite() {
   if (cache) return cache;
-  const res = await fetch("/data/site.json");
+  const res = await fetch(`${import.meta.env.BASE_URL}data/site.json`);
   if (!res.ok) {
     throw new Error(
       "Missing site data. Run: python scripts/build_site_data.py"
