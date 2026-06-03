@@ -1,0 +1,150 @@
+.form-scene {
+  position: relative;
+  padding: clamp(3rem, 8vw, 5rem) 0 6rem;
+  overflow: hidden;
+}
+
+.form-scene-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: clamp(8rem, 25vw, 18rem);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0.35;
+}
+
+.form-scene--quote .form-scene-bg {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--signal) 25%, transparent);
+}
+
+.form-scene-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.form-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: 0.5rem 0 0;
+}
+
+.form-lead {
+  margin: 1.25rem 0 0;
+  max-width: 38ch;
+  color: var(--paper-dim);
+}
+
+.ops-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ops-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.ops-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ops-field span {
+  color: var(--wire);
+}
+
+.ops-field input,
+.ops-field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.85rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--line);
+  color: var(--paper);
+  transition: border-color 0.2s;
+}
+
+.ops-field input:focus,
+.ops-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--signal);
+}
+
+.ops-field--full textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ops-radios {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ops-radios legend {
+  color: var(--wire);
+  margin-bottom: 0.75rem;
+}
+
+.ops-radio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.ops-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.ops-radio:has(input:checked) {
+  border-color: var(--signal);
+  background: color-mix(in srgb, var(--signal) 12%, transparent);
+}
+
+.ops-radio input {
+  accent-color: var(--signal);
+}
+
+.ops-msg {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.ops-msg--ok {
+  color: var(--signal-hot);
+}
+
+.ops-msg--err {
+  color: var(--alert);
+}
+
+@media (max-width: 800px) {
+  .form-scene-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ops-row,
+  .ops-radio-grid {
+    grid-template-columns: 1fr;
+  }
+}

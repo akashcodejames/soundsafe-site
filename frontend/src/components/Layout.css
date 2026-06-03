@@ -1,0 +1,13 @@
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: clip;
+}
+
+.site-main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
